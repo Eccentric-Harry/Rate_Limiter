@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import axios from 'axios';
+import ThemeToggle from './components/ThemeToggle';
 
 const API_BASE_URL = 'http://localhost:4000';
 const socket = io(API_BASE_URL);
@@ -167,6 +168,7 @@ function App() {
 
   return (
     <div className="container">
+      <ThemeToggle />
       <header>
         <h1>Rate Limiter & Monitoring Dashboard</h1>
         <p>

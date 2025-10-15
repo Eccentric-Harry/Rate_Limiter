@@ -1,3 +1,42 @@
+/* Define CSS variables for both light and dark themes */
+:root {
+  /* Light theme variables (default) */
+  --bg-color: #f5f5f5;
+  --container-bg: white;
+  --text-color: #333;
+  --border-color: #ddd;
+  --input-bg: white;
+  --table-header-bg: #f2f2f2;
+  --hover-bg: #f9f9f9;
+  --code-bg: #f5f5f5;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --api-tester-bg: #f9f9f9;
+  --endpoint-bg: #e0e0e0;
+  --response-bg: #f0f0f0;
+  --simulation-bg: #f0f8ff;
+  --simulation-border: #cce5ff;
+  --pre-bg: #f5f5f5;
+}
+
+/* Dark theme variables - GitHub-like */
+[data-theme="dark"] {
+  --bg-color: #0d1117;
+  --container-bg: #161b22;
+  --text-color: #c9d1d9;
+  --border-color: #30363d;
+  --input-bg: #0d1117;
+  --table-header-bg: #21262d;
+  --hover-bg: #1c2128;
+  --code-bg: #161b22;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --api-tester-bg: #161b22;
+  --endpoint-bg: #21262d;
+  --response-bg: #161b22;
+  --simulation-bg: #0d1117;
+  --simulation-border: #30363d;
+  --pre-bg: #161b22;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,20 +45,23 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: white;
+  background-color: var(--container-bg);
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px var(--shadow-color);
+  transition: background-color 0.3s ease;
 }
 
 h1, h2 {
-  color: #333;
+  color: var(--text-color);
 }
 
 table {
@@ -31,11 +73,11 @@ table {
 table th, table td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
 }
 
 table th {
-  background-color: #f2f2f2;
+  background-color: var(--table-header-bg);
   font-weight: bold;
 }
 
@@ -44,12 +86,12 @@ table th {
 }
 
 .key-row:hover {
-  background-color: #f9f9f9;
+  background-color: var(--hover-bg);
 }
 
 .key-row.rate-exceeded {
-  background-color: #ffeded;
-  border-left: 4px solid #f44336;
+  background-color: rgba(248, 81, 73, 0.15);
+  border-left: 4px solid #f85149;
 }
 
 .form-group {
@@ -65,13 +107,15 @@ table th {
 .form-group input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #2ea44f;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -79,17 +123,18 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #2c974b;
 }
 
 .api-key {
   font-family: monospace;
-  background-color: #f5f5f5;
+  background-color: var(--code-bg);
   padding: 2px 5px;
   border-radius: 3px;
 }
@@ -103,42 +148,42 @@ button:hover {
 }
 
 .status.active {
-  background-color: #4CAF50;
+  background-color: #2ea043;
 }
 
 .status.inactive {
-  background-color: #f44336;
+  background-color: #f85149;
 }
 
 .usage-bar {
-  background-color: #e0e0e0;
-  height: 20px;
-  border-radius: 10px;
+  background-color: rgba(110, 118, 129, 0.4);
+  height: 8px;
+  border-radius: 6px;
   margin-top: 5px;
   overflow: hidden;
 }
 
 .usage-fill {
   height: 100%;
-  background-color: #4CAF50;
+  background-color: #2ea043;
   transition: width 0.5s;
 }
 
 .usage-fill.exceeded {
-  background-color: #f44336;
+  background-color: #f85149;
 }
 
 .exceeded-text {
-  color: #f44336;
+  color: #f85149;
   font-weight: bold;
 }
 
 /* API Tester Styles */
 .api-tester {
-  background-color: #f9f9f9;
+  background-color: var(--api-tester-bg);
   padding: 20px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   margin-bottom: 20px;
 }
 
@@ -148,11 +193,12 @@ button:hover {
 }
 
 .endpoint-input span {
-  background-color: #e0e0e0;
+  background-color: var(--endpoint-bg);
   padding: 8px;
   border-radius: 4px 0 0 4px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-right: none;
+  color: var(--text-color);
 }
 
 .endpoint-input input {
@@ -163,26 +209,30 @@ button:hover {
 .form-group select {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }
 
 .form-group textarea {
   width: 100%;
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-family: monospace;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }
 
 .send-request-btn {
   margin-top: 10px;
   margin-bottom: 20px;
-  background-color: #007bff;
+  background-color: #2188ff;
 }
 
 .send-request-btn:hover {
-  background-color: #0069d9;
+  background-color: #0366d6;
 }
 
 .send-request-btn:disabled {
@@ -191,7 +241,7 @@ button:hover {
 }
 
 .response-container {
-  background-color: #f0f0f0;
+  background-color: var(--response-bg);
   padding: 15px;
   border-radius: 5px;
   border-left: 4px solid #007bff;
@@ -207,13 +257,13 @@ button:hover {
 }
 
 .response-status.success {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: rgba(46, 160, 67, 0.15);
+  color: #2ea043;
 }
 
 .response-status.error {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: rgba(248, 81, 73, 0.15);
+  color: #f85149;
 }
 
 .response-headers, .response-body {
@@ -221,7 +271,7 @@ button:hover {
 }
 
 pre {
-  background-color: #f5f5f5;
+  background-color: var(--pre-bg);
   padding: 10px;
   border-radius: 4px;
   overflow-x: auto;
@@ -229,14 +279,15 @@ pre {
   font-size: 13px;
   max-height: 200px;
   overflow-y: auto;
+  color: var(--text-color);
 }
 
 /* Simulation Controls */
 .simulation-controls {
-  background-color: #f0f8ff;
+  background-color: var(--simulation-bg);
   padding: 20px;
   border-radius: 5px;
-  border: 1px solid #cce5ff;
+  border: 1px solid var(--simulation-border);
 }
 
 .simulation-buttons {
@@ -246,12 +297,12 @@ pre {
 }
 
 .simulation-btn {
-  background-color: #28a745;
+  background-color: #2ea44f;
   flex: 1;
 }
 
 .simulation-btn:hover {
-  background-color: #218838;
+  background-color: #2c974b;
 }
 
 .simulation-btn:disabled {
@@ -263,6 +314,11 @@ pre {
   margin-top: 20px;
   text-align: center;
   font-style: italic;
+  color: var(--text-color);
+  opacity: 0.9;
+  padding: 8px;
+  background-color: var(--api-tester-bg);
+  border-radius: 4px;
 }
 
 .action-buttons {
@@ -271,39 +327,43 @@ pre {
 }
 
 .toggle-btn {
-  background-color: #007bff;
+  background-color: #2188ff;
   color: white;
   border: none;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .toggle-btn:hover {
-  background-color: #0056b3;
+  background-color: #0366d6;
 }
 
 .delete-btn {
-  background-color: #dc3545;
+  background-color: #f85149;
   color: white;
   border: none;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .delete-btn:hover {
-  background-color: #c82333;
+  background-color: #da3633;
 }
 
 .simulation-results {
   margin-top: 20px;
+  padding: 15px;
+  background-color: var(--api-tester-bg);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
 }
 
 .simulation-summary {
   display: flex;
   justify-content: space-between;
-  background-color: #f0f0f0;
+  background-color: var(--response-bg);
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -317,7 +377,8 @@ pre {
 
 .metric-label {
   font-size: 14px;
-  color: #666;
+  color: var(--text-color);
+  opacity: 0.8;
 }
 
 .metric-value {
@@ -326,26 +387,29 @@ pre {
 }
 
 .metric-value.success {
-  color: #28a745;
+  color: #2ea043;
 }
 
 .metric-value.error {
-  color: #dc3545;
+  color: #f85149;
 }
 
 .simulation-details {
   max-height: 300px;
   overflow-y: auto;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
+  background-color: var(--container-bg);
+  box-shadow: 0 1px 3px var(--shadow-color);
 }
 
 .simulation-request {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--container-bg);
 }
 
 .simulation-request:last-child {
@@ -353,46 +417,51 @@ pre {
 }
 
 .simulation-request.success {
-  background-color: #f0fff0;
+  background-color: rgba(46, 160, 67, 0.15);
+  border-left: 3px solid #2ea043;
 }
 
 .simulation-request.error {
-  background-color: #fff0f0;
+  background-color: rgba(248, 81, 73, 0.15);
+  border-left: 3px solid #f85149;
 }
 
 .request-number {
   font-weight: bold;
   width: 100px;
+  color: var(--text-color);
 }
 
 .request-status {
   width: 120px;
+  color: var(--text-color);
 }
 
 .request-data {
   flex-grow: 1;
   text-align: right;
+  color: var(--text-color);
 }
 
 .endpoint-info {
-  background-color: #f8f9fa;
+  background-color: var(--api-tester-bg);
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 15px;
-  border-left: 4px solid #17a2b8;
+  border-left: 4px solid #58a6ff;
 }
 
 .rate-limited-notice {
   margin-top: 10px;
-  color: #856404;
-  background-color: #fff3cd;
+  color: #d29922;
+  background-color: rgba(210, 153, 34, 0.1);
   padding: 5px 10px;
   border-radius: 4px;
   font-weight: bold;
 }
 
 .usage-info {
-  background-color: #e8f4f8;
+  background-color: var(--api-tester-bg);
   padding: 10px;
   border-radius: 5px;
   margin: 15px 0;
@@ -403,9 +472,35 @@ pre {
 .usage-counters {
   margin-left: 10px;
   font-weight: bold;
-  color: #0056b3;
+  color: #58a6ff;
 }
 
 section {
   margin-bottom: 30px;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--hover-bg);
 }
