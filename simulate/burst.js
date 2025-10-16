@@ -5,7 +5,6 @@ const API_URL = 'http://localhost:4000/protected';
 const DEFAULT_REQUESTS = 100;
 const DEFAULT_CONCURRENCY = 1;
 
-const apiKey = "ak_stcyJ3GhtP4i8bnA";
 
 /**
  * Send a burst of requests to test rate limiting
